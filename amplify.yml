@@ -1,17 +1,22 @@
 version: 1
-build:
-  commands:
-    - npm ci
-    - npm run build
-    - cp out/404/index.html out/404.html
-artifacts:
-  baseDirectory: out
-  files:
-    - '**/*'
-cache:
-  paths:
-    - node_modules/**/*
-    - .next/cache/**/*
+frontend:
+  framework: none
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+        - cp out/404/index.html out/404.html
+  artifacts:
+    baseDirectory: out
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
 customHeaders:
   - pattern: '**/*'
     headers:
